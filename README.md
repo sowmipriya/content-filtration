@@ -18,7 +18,7 @@ Performing token-level classification to detect potentially blocked/flagged word
 
 Producing structured outputs containing probability scores and flagged token groups
 
-🧩 Architecture
+Architecture
  ┌────────────────────────────┐
  │        S3 Storage          │
  │  ├── quantized_model_gpu_2.pt
@@ -63,19 +63,19 @@ pip install torch transformers peft datasets boto3 botocore pandas numpy
 🔍 Inference Usage
 1️ Single String
 svc.predict_texts("This text contains suspicious words")
-# → [{'score': 0.92, 'details': ['suspicious', 'words']}]
+→ [{'score': 0.92, 'details': ['suspicious', 'words']}]
 
 2️ Batch of Texts
 texts = ["normal text", "blocked phrase found here"]
 svc.predict_texts(texts)
-# → [{'score': 0.0, 'details': []}, {'score': 0.88, 'details': ['blocked', 'phrase']}]
+→ [{'score': 0.0, 'details': []}, {'score': 0.88, 'details': ['blocked', 'phrase']}]
 
 3️ Pandas DataFrame Endpoint
 import pandas as pd
 df = pd.DataFrame({"text": ["hello world", "forbidden word inside"]})
 result = svc.predict(df)
 print(result)
-# → DataFrame with columns: ['score', 'details']
+→ DataFrame with columns: ['score', 'details']
 
 Output Format
 
